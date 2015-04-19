@@ -22,7 +22,7 @@ WriteMakefile(
     PREREQ_PM => {
         'Moo'              => 0,
         'namespace::clean' => 0,
-        'Date::Utils'      => '0.03',
+        'Date::Utils'      => '0.05',
     },
     dist  => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean => { FILES => 'Date-Hijri-Simple-*' },
