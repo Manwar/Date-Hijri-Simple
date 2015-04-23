@@ -1,6 +1,6 @@
 package Date::Hijri::Simple;
 
-$Date::Hijri::Simple::VERSION = '0.01';
+$Date::Hijri::Simple::VERSION = '0.02';
 
 =head1 NAME
 
@@ -8,25 +8,13 @@ Date::Hijri::Simple - Represents Hijri date.
 
 =head1 VERSION
 
-Version 0.01
+Version 0.02
 
 =cut
 
 use 5.006;
 use Data::Dumper;
 use Time::localtime;
-use Date::Utils qw(
-    $HIJRI_EPOCH
-    $HIJRI_YEAR
-    $HIJRI_MONTH
-    $HIJRI_DAY
-    $HIJRI_MONTHS
-
-    jwday
-    gregorian_to_hijri
-    hijri_to_julian
-    julian_to_gregorian
-);
 
 use Moo;
 use namespace::clean;
@@ -39,19 +27,25 @@ Represents the Hijri date.
 
 =cut
 
-has year  => (is => 'rw', isa => $HIJRI_YEAR,  predicate => 1);
-has month => (is => 'rw', isa => $HIJRI_MONTH, predicate => 1);
-has day   => (is => 'rw', isa => $HIJRI_DAY,   predicate => 1);
+has year  => (is => 'rw', predicate => 1);
+has month => (is => 'rw', predicate => 1);
+has day   => (is => 'rw', predicate => 1);
+
+with 'Date::Utils::Hijri';
 
 sub BUILD {
     my ($self) = @_;
+
+    $self->validate_year($self->year)   if $self->has_year;
+    $self->validate_month($self->month) if $self->has_month;
+    $self->validate_day($self->day)     if $self->has_day;
 
     unless ($self->has_year && $self->has_month && $self->has_day) {
         my $today = localtime;
         my $year  = $today->year + 1900;
         my $month = $today->mon + 1;
         my $day   = $today->mday;
-        my ($y, $m, $d) = gregorian_to_hijri($year, $month, $day);
+        my ($y, $m, $d) = $self->gregorian_to_hijri($year, $month, $day);
         $self->year($y);
         $self->month($m);
         $self->day($d);
@@ -89,7 +83,7 @@ Returns julian date equivalent of the Hijri date.
 sub to_julian {
     my ($self) = @_;
 
-    return hijri_to_julian($self->year, $self->month, $self->day);
+    return $self->hijri_to_julian($self->year, $self->month, $self->day);
 }
 
 =head2 to_gregorian()
@@ -101,7 +95,7 @@ Returns gregorian date (yyyy-mm-dd) equivalent of the Hijri date.
 sub to_gregorian {
     my ($self) = @_;
 
-    my @date = julian_to_gregorian($self->to_julian);
+    my @date = $self->julian_to_gregorian($self->to_julian);
     return sprintf("%04d-%02d-%02d", $date[0], $date[1], $date[2]);
 }
 
@@ -126,13 +120,13 @@ Returns day of the week, starting 0 for al-Ahad, 1 for al-Ithnayn and so on.
 sub day_of_week {
     my ($self) = @_;
 
-    return jwday($self->to_julian);
+    return $self->jwday($self->to_julian);
 }
 
 sub as_string {
     my ($self) = @_;
 
-    return sprintf("%d, %s %d", $self->day, $HIJRI_MONTHS->[$self->month], $self->year);
+    return sprintf("%d, %s %d", $self->day, $self->hijri_months->[$self->month], $self->year);
 }
 
 =head1 AUTHOR

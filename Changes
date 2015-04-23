@@ -1,4 +1,7 @@
 Revision history for Date::Hijri::Simple
 
+0.02  Thu Apr 23 23:30:00 2015
+      - Re-structured and consumed Date::Utils::Hijri as Moo Role.
+
 0.01  Sun Apr 19 10:45:00 2015
       - First version, released.

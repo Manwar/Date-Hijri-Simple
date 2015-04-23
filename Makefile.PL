@@ -20,9 +20,10 @@ WriteMakefile(
         'Test::More' => 0,
     },
     PREREQ_PM => {
-        'Moo'              => 0,
-        'namespace::clean' => 0,
-        'Date::Utils'      => '0.05',
+        'Moo'                => 0,
+        'namespace::clean'   => 0,
+        'Date::Utils::Hijri' => 0,
+        'Time::localtime'    => 0,
     },
     dist  => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean => { FILES => 'Date-Hijri-Simple-*' },
