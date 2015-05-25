@@ -1,5 +1,12 @@
 Revision history for Date::Hijri::Simple
 
+0.03  Mon May 25 02:30:00 2015
+      - Removed the dependency on Date::Utils::Hijri.
+      - Added the dependency on Date::Utils v0.08.
+      - Added the dependency on List::Util v1.41.
+      - Merged the code Date::Utils::Hijri into Date::Hijri::Simple.
+      - Updated code in the section "SYNOPSIS".
+
 0.02  Thu Apr 23 23:30:00 2015
       - Re-structured and consumed Date::Utils::Hijri as Moo Role.
 
