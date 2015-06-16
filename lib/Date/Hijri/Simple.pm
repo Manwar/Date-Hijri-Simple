@@ -1,6 +1,6 @@
 package Date::Hijri::Simple;
 
-$Date::Hijri::Simple::VERSION = '0.03';
+$Date::Hijri::Simple::VERSION = '0.04';
 
 =head1 NAME
 
@@ -8,7 +8,7 @@ Date::Hijri::Simple - Represents Hijri date.
 
 =head1 VERSION
 
-Version 0.03
+Version 0.04
 
 =cut
 
@@ -242,7 +242,7 @@ Dies if the given C<$day> is not a valid Hijri day.
 sub validate_day {
     my ($self, $day) = @_;
 
-    die("ERROR: Invalid day [$day].\n")
+    die sprintf("ERROR: Invalid day [%s].\n", defined($day)?($day):(''))
         unless (defined($day) && ($day =~ /^\d{1,2}$/) && ($day >= 1) && ($day <= 30));
 }
 
