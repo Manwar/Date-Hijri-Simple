@@ -1,5 +1,9 @@
 Revision history for Date::Hijri::Simple
 
+0.05  Mon Jun 22 11:40:00 2015
+      - Added unit test method from_gregorian() and from_julian().
+      - Updated section "SYNOPSIS" and added example for the above two methods.
+
 0.04  Tue Jun 16 10:35:00 2015
       - Updated the method validate_day() to handle undef appropriately.
 

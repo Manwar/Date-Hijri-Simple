@@ -1,6 +1,6 @@
 package Date::Hijri::Simple;
 
-$Date::Hijri::Simple::VERSION = '0.04';
+$Date::Hijri::Simple::VERSION = '0.05';
 
 =head1 NAME
 
@@ -8,7 +8,7 @@ Date::Hijri::Simple - Represents Hijri date.
 
 =head1 VERSION
 
-Version 0.04
+Version 0.05
 
 =cut
 
@@ -88,8 +88,10 @@ sub BUILD {
     # prints today's hijri date
     print Date::Hijri::Simple->new, "\n";
 
+    my $date = Date::Hijri::Simple->new({ year => 1436, month => 1, day => 1 });
+
     # prints given hijri date
-    print Date::Hijri::Simple->new({ year => 1436, month => 1, day => 1 })->as_string
+    print $date->as_string, "\n";
 
     # prints equivalent Julian date
     print $date->to_julian, "\n";
@@ -99,6 +101,12 @@ sub BUILD {
 
     # prints day of the week index (0 for Yekshanbeh, 1 for Doshanbehl and so on.
     print $date->day_of_week, "\n";
+
+    # prints hijri date equivalent of gregorian date (2014-10-25).
+    print $date->from_gregorian(2014, 10, 25), "\n";
+
+    # prints the hijri date equivalent of julian date (2456955.5).
+    print $date->from_julian(2456955.5), "\n";
 
 =head1 METHODS
 
