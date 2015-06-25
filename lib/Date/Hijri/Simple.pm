@@ -1,6 +1,6 @@
 package Date::Hijri::Simple;
 
-$Date::Hijri::Simple::VERSION = '0.05';
+$Date::Hijri::Simple::VERSION = '0.06';
 
 =head1 NAME
 
@@ -8,7 +8,7 @@ Date::Hijri::Simple - Represents Hijri date.
 
 =head1 VERSION
 
-Version 0.05
+Version 0.06
 
 =cut
 
@@ -85,34 +85,34 @@ sub BUILD {
     use strict; use warnings;
     use Date::Hijri::Simple;
 
-    # prints today's hijri date
+    # prints today's Hijri date
     print Date::Hijri::Simple->new, "\n";
 
     my $date = Date::Hijri::Simple->new({ year => 1436, month => 1, day => 1 });
 
-    # prints given hijri date
+    # prints the given Hijri date
     print $date->as_string, "\n";
 
-    # prints equivalent Julian date
+    # prints the equivalent Julian date
     print $date->to_julian, "\n";
 
-    # prints equivalent Gregorian date
+    # prints the equivalent Gregorian date
     print $date->to_gregorian, "\n";
 
-    # prints day of the week index (0 for Yekshanbeh, 1 for Doshanbehl and so on.
+    # prints day of the week index (0 for al-Ahad, 1 for al-Ithnayn and so on).
     print $date->day_of_week, "\n";
 
-    # prints hijri date equivalent of gregorian date (2014-10-25).
+    # prints the Hijri date equivalent of the Gregorian date (2014-10-25).
     print $date->from_gregorian(2014, 10, 25), "\n";
 
-    # prints the hijri date equivalent of julian date (2456955.5).
+    # prints the Hijri date equivalent of the Julian date (2456955.5).
     print $date->from_julian(2456955.5), "\n";
 
 =head1 METHODS
 
 =head2 to_julian()
 
-Returns julian date equivalent of the Hijri date.
+Returns Julian date equivalent of the Hijri date.
 
 =cut
 
@@ -150,15 +150,14 @@ sub from_julian {
 
 =head2 to_gregorian()
 
-Returns gregorian date (yyyy-mm-dd) equivalent of the Hijri date.
+Returns Gregorian date (yyyy, mm, dd) equivalent of the Hijri date.
 
 =cut
 
 sub to_gregorian {
     my ($self) = @_;
 
-    my @date = $self->julian_to_gregorian($self->to_julian);
-    return sprintf("%04d-%02d-%02d", $date[0], $date[1], $date[2]);
+    return $self->julian_to_gregorian($self->to_julian);
 }
 
 =head2 from_gregorian($year, $month, $day)
@@ -198,13 +197,13 @@ sub day_of_week {
     return $self->jwday($self->to_julian);
 }
 
-=head2 is_hijri_leap_year($year)
+=head2 is_leap_year($year)
 
 Returns 0 or 1 if the given Hijri year C<$year> is a leap year or not.
 
 =cut
 
-sub is_hijri_leap_year {
+sub is_leap_year {
     my ($self, $year) = @_;
 
     my $mod = $year % 30;
@@ -212,40 +211,22 @@ sub is_hijri_leap_year {
     return 0;
 }
 
-=head2 days_in_hijri_year($year)
-
-Returns the number of days in the given year of Hijri Calendar.
-
-=cut
-
-sub days_in_hijri_year {
+sub days_in_year {
     my ($self, $year) = @_;
 
-    ($self->is_hijri_leap_year($year))
+    ($self->is_leap_year($year))
     ?
     (return 355)
     :
     (return 354);
 }
 
-=head2 days_in_hijri_month_year($month, $year)
-
-Returns total number of days in the given Hijri month year.
-
-=cut
-
-sub days_in_hijri_month_year {
+sub days_in_month_year {
     my ($self, $month, $year) = @_;
 
-    return 30 if (($month % 2 == 1) || (($month == 12) && ($self->is_hijri_leap_year($year))));
+    return 30 if (($month % 2 == 1) || (($month == 12) && ($self->is_leap_year($year))));
     return 29;
 }
-
-=head2 validate_day($day)
-
-Dies if the given C<$day> is not a valid Hijri day.
-
-=cut
 
 sub validate_day {
     my ($self, $day) = @_;

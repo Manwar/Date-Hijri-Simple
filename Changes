@@ -1,5 +1,10 @@
 Revision history for Date::Hijri::Simple
 
+0.06  Thu Jun 25 11:40:00 2015
+      - Updated method to_gregorian() to return (yyyy,mm,dd) to be consistent with other Date::* packages of mine.
+      - Updated unit test to respect the above changes.
+      - Tidied up POD document in general.
+
 0.05  Mon Jun 22 11:40:00 2015
       - Added unit test method from_gregorian() and from_julian().
       - Updated section "SYNOPSIS" and added example for the above two methods.
