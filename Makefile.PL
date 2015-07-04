@@ -20,10 +20,10 @@ WriteMakefile(
         'Test::More' => 0,
     },
     PREREQ_PM => {
-        'Moo'              => 0,
-        'namespace::clean' => 0,
+        'Moo'              => '2.000000',
+        'namespace::clean' => '0.24',
         'List::Util'       => '1.41',
-        'Date::Utils'      => '0.08',
+        'Date::Utils'      => '0.09',
         'Time::localtime'  => '1.02',
     },
     dist  => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },

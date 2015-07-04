@@ -1,6 +1,6 @@
 package Date::Hijri::Simple;
 
-$Date::Hijri::Simple::VERSION = '0.06';
+$Date::Hijri::Simple::VERSION = '0.07';
 
 =head1 NAME
 
@@ -8,7 +8,7 @@ Date::Hijri::Simple - Represents Hijri date.
 
 =head1 VERSION
 
-Version 0.06
+Version 0.07
 
 =cut
 
@@ -97,7 +97,7 @@ sub BUILD {
     print $date->to_julian, "\n";
 
     # prints the equivalent Gregorian date
-    print $date->to_gregorian, "\n";
+    print sprintf("%04d-%02d-%02d", $date->to_gregorian), "\n";
 
     # prints day of the week index (0 for al-Ahad, 1 for al-Ithnayn and so on).
     print $date->day_of_week, "\n";
