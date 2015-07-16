@@ -1,6 +1,6 @@
 package Date::Hijri::Simple;
 
-$Date::Hijri::Simple::VERSION = '0.07';
+$Date::Hijri::Simple::VERSION = '0.08';
 
 =head1 NAME
 
@@ -8,7 +8,7 @@ Date::Hijri::Simple - Represents Hijri date.
 
 =head1 VERSION
 
-Version 0.07
+Version 0.08
 
 =cut
 
@@ -37,13 +37,8 @@ our $HIJRI_MONTHS = [
 ];
 
 our $HIJRI_DAYS = [
-    '<yellow><bold>      al-Ahad </bold></yellow>',
-    '<yellow><bold>   al-Ithnayn </bold></yellow>',
-    '<yellow><bold> ath-Thulatha </bold></yellow>',
-    '<yellow><bold>     al-Arbia </bold></yellow>',
-    '<yellow><bold>    al-Khamis </bold></yellow>',
-    '<yellow><bold>    al-Jumuah </bold></yellow>',
-    '<yellow><bold>      as-Sabt </bold></yellow>',
+    'al-Ahad', 'al-Ithnayn', 'ath-Thulatha', 'al-Arbia',
+    'al-Khamis', 'al-Jumuah', 'as-Sabt'
 ];
 
 our $HIJRI_LEAP_YEAR_MOD = [
@@ -209,6 +204,31 @@ sub is_leap_year {
     my $mod = $year % 30;
     return 1 if grep/$mod/, @{$self->hijri_leap_year_mod};
     return 0;
+}
+
+=head2 get_calendar($month, $year)
+
+Returns color coded Hijri calendar for the given C<$month> and C<$year>.
+
+=cut
+
+sub get_calendar {
+    my ($self, $month, $year) = @_;
+
+    $self->validate_month($month);
+    $self->validate_year($year);
+
+    my $date = Date::Hijri::Simple->new({ year => $year, month => $month, day => 1 });
+    my $days = $date->days_in_month_year($month, $year);
+
+    return $self->create_calendar(
+        {
+            start_index => $date->day_of_week,
+            month_name  => $self->hijri_months->[$month],
+            days        => $days,
+            day_names   => $self->hijri_days,
+            year        => $year
+        });
 }
 
 sub days_in_year {
