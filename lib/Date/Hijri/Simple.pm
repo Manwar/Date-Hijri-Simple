@@ -1,6 +1,6 @@
 package Date::Hijri::Simple;
 
-$Date::Hijri::Simple::VERSION = '0.08';
+$Date::Hijri::Simple::VERSION = '0.09';
 
 =head1 NAME
 
@@ -8,7 +8,7 @@ Date::Hijri::Simple - Represents Hijri date.
 
 =head1 VERSION
 
-Version 0.08
+Version 0.09
 
 =cut
 
@@ -17,6 +17,7 @@ use Data::Dumper;
 use Time::localtime;
 use List::Util qw/min/;
 use POSIX qw/floor ceil/;
+use Date::Exception::InvalidDay;
 
 use Moo;
 use namespace::clean;
@@ -251,7 +252,14 @@ sub days_in_month_year {
 sub validate_day {
     my ($self, $day) = @_;
 
-    die sprintf("ERROR: Invalid day [%s].\n", defined($day)?($day):(''))
+    my @caller = caller(0);
+    @caller    = caller(2) if $caller[3] eq '(eval)';
+
+    Date::Exception::InvalidDay->throw({
+        method      => __PACKAGE__."::validate_day",
+        message     => sprintf("ERROR: Invalid day [%s].", defined($day)?($day):('')),
+        filename    => $caller[1],
+        line_number => $caller[2] })
         unless (defined($day) && ($day =~ /^\d{1,2}$/) && ($day >= 1) && ($day <= 30));
 }
 
