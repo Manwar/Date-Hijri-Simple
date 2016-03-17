@@ -1,6 +1,7 @@
 package Date::Hijri::Simple;
 
-$Date::Hijri::Simple::VERSION = '0.09';
+$Date::Hijri::Simple::VERSION   = '0.10';
+$Date::Hijri::Simple::AUTHORITY = 'cpan:MANWAR';
 
 =head1 NAME
 
@@ -8,7 +9,7 @@ Date::Hijri::Simple - Represents Hijri date.
 
 =head1 VERSION
 
-Version 0.09
+Version 0.10
 
 =cut
 
@@ -275,7 +276,21 @@ Mohammad S Anwar, C<< <mohammad.anwar at yahoo.com> >>
 
 =head1 REPOSITORY
 
-L<https://github.com/Manwar/Date-Hijri-Simple>
+L<https://github.com/manwar/Date-Hijri-Simple>
+
+=head1 SEE ALSO
+
+=over 4
+
+=item L<Date::Bahai::Simple>
+
+=item L<Date::Gregorian::Simple>
+
+=item L<Date::Persian::Simple>
+
+=item L<Date::Saka::Simple>
+
+=back
 
 =head1 BUGS
 
@@ -296,25 +311,25 @@ You can also look for information at:
 
 =item * RT: CPAN's request tracker
 
-L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=Date-Persian-Simple>
+L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=Date-Hijri-Simple>
 
 =item * AnnoCPAN: Annotated CPAN documentation
 
-L<http://annocpan.org/dist/Date-Persian-Simple>
+L<http://annocpan.org/dist/Date-Hijri-Simple>
 
 =item * CPAN Ratings
 
-L<http://cpanratings.perl.org/d/Date-Persian-Simple>
+L<http://cpanratings.perl.org/d/Date-Hijri-Simple>
 
 =item * Search CPAN
 
-L<http://search.cpan.org/dist/Date-Persian-Simple/>
+L<http://search.cpan.org/dist/Date-Hijri-Simple/>
 
 =back
 
 =head1 LICENSE AND COPYRIGHT
 
-Copyright (C) 2015 Mohammad S Anwar.
+Copyright (C) 2015 - 2016 Mohammad S Anwar.
 
 This program  is  free software; you can redistribute it and / or modify it under
 the  terms  of the the Artistic License (2.0). You may obtain a  copy of the full

@@ -1,5 +1,11 @@
 Revision history for Date::Hijri::Simple
 
+0.10  Thu Mar 17 16:25:00 2016
+      - Added $AUTHORITY.
+      - Added section "SEE ALSO".
+      - Fixed typo in the pod document.
+      - Updated copyright year information.
+
 0.09  Tue Aug 25 10:30:00 2015
       - Added the dependency on Date::Utils v0.11.
       - Updated method validate_day() to make use of Date::Exception package.
