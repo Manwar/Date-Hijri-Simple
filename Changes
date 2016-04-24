@@ -1,5 +1,8 @@
 Revision history for Date::Hijri::Simple
 
+0.11  Sun Apr 24 11:20:00 2016
+      - Updated the dependency on Date::Utils v0.16.
+
 0.10  Thu Mar 17 16:25:00 2016
       - Added $AUTHORITY.
       - Added section "SEE ALSO".
