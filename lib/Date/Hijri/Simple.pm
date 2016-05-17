@@ -1,6 +1,6 @@
 package Date::Hijri::Simple;
 
-$Date::Hijri::Simple::VERSION   = '0.11';
+$Date::Hijri::Simple::VERSION   = '0.12';
 $Date::Hijri::Simple::AUTHORITY = 'cpan:MANWAR';
 
 =head1 NAME
@@ -9,7 +9,7 @@ Date::Hijri::Simple - Represents Hijri date.
 
 =head1 VERSION
 
-Version 0.11
+Version 0.12
 
 =cut
 
@@ -48,8 +48,8 @@ our $HIJRI_LEAP_YEAR_MOD = [
 ];
 
 has hijri_epoch         => (is => 'ro', default => sub { 1948439.5            });
-has hijri_days          => (is => 'ro', default => sub { $HIJRI_DAYS          });
-has hijri_months        => (is => 'ro', default => sub { $HIJRI_MONTHS        });
+has days                => (is => 'ro', default => sub { $HIJRI_DAYS          });
+has months              => (is => 'ro', default => sub { $HIJRI_MONTHS        });
 has hijri_leap_year_mod => (is => 'ro', default => sub { $HIJRI_LEAP_YEAR_MOD });
 
 has year  => (is => 'rw', predicate => 1);
@@ -116,6 +116,8 @@ Returns Julian date equivalent of the Hijri date.
 sub to_julian {
     my ($self) = @_;
 
+    #die Dumper($self);
+    #my $month = $self->get_month_number;
     return ($self->day + ceil(29.5 * ($self->month - 1))
             + ($self->year - 1) * 354
             + floor((3 + (11 * $self->year)) / 30)
@@ -217,18 +219,27 @@ Returns color coded Hijri calendar for the given C<$month> and C<$year>.
 sub get_calendar {
     my ($self, $month, $year) = @_;
 
-    $self->validate_month($month);
-    $self->validate_year($year);
+    if (defined $month && defined $year) {
+        $self->validate_month($month);
+        $self->validate_year($year);
+
+        if ($month !~ /^\d+$/) {
+            $month = $self->get_month_number($month);
+        }
+    }
+    else {
+        $month = $self->month;
+        $year  = $self->year;
+    }
 
     my $date = Date::Hijri::Simple->new({ year => $year, month => $month, day => 1 });
-    my $days = $date->days_in_month_year($month, $year);
 
     return $self->create_calendar(
         {
             start_index => $date->day_of_week,
-            month_name  => $self->hijri_months->[$month],
-            days        => $days,
-            day_names   => $self->hijri_days,
+            month_name  => $date->get_month_name,
+            days        => $date->days_in_month_year($month, $year),
+            day_names   => $date->days,
             year        => $year
         });
 }
@@ -267,7 +278,7 @@ sub validate_day {
 sub as_string {
     my ($self) = @_;
 
-    return sprintf("%d, %s %d", $self->day, $self->hijri_months->[$self->month], $self->year);
+    return sprintf("%d, %s %d", $self->day, $self->get_month_name, $self->year);
 }
 
 =head1 AUTHOR

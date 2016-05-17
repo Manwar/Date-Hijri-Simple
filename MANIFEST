@@ -6,6 +6,6 @@ Makefile.PL
 README
 lib/Date/Hijri/Simple.pm
 t/00-load.t
-t/01-date-hijri-simple.t
+t/date-hijri-simple.t
 t/manifest.t
 t/pod.t

@@ -1,5 +1,12 @@
 Revision history for Date::Hijri::Simple
 
+0.12  Tue May 17 10:35:00 2016
+      - Updated the dependency on Date::Utils v0.19.
+      - Updated method get_calendar() and method as_string() to use get_month_name().
+      - Renamed method hijri_months() to months().
+      - Renamed method hijri_days() to days().
+      - Updated method get_calendar() to respect the above changes.
+
 0.11  Sun Apr 24 11:20:00 2016
       - Updated the dependency on Date::Utils v0.16.
 
