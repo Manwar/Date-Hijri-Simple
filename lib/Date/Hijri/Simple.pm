@@ -1,6 +1,6 @@
 package Date::Hijri::Simple;
 
-$Date::Hijri::Simple::VERSION   = '0.12';
+$Date::Hijri::Simple::VERSION   = '0.13';
 $Date::Hijri::Simple::AUTHORITY = 'cpan:MANWAR';
 
 =head1 NAME
@@ -9,7 +9,7 @@ Date::Hijri::Simple - Represents Hijri date.
 
 =head1 VERSION
 
-Version 0.12
+Version 0.13
 
 =cut
 
@@ -116,8 +116,6 @@ Returns Julian date equivalent of the Hijri date.
 sub to_julian {
     my ($self) = @_;
 
-    #die Dumper($self);
-    #my $month = $self->get_month_number;
     return ($self->day + ceil(29.5 * ($self->month - 1))
             + ($self->year - 1) * 354
             + floor((3 + (11 * $self->year)) / 30)
