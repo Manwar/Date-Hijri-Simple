@@ -1,5 +1,9 @@
 Revision history for Date::Hijri::Simple
 
+0.14  Tue Jul 19 11:30:00 2016
+      - Dropped method get_calendar() as it's no longer relevant here.
+      - Updated copyright year information in README file.
+
 0.13  Thu May 26 10:35:00 2016
       - Fixed missing pre-reqs as reported by CPANTS.
       - Updated the dependency on Date::Utils v0.20.

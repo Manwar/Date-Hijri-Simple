@@ -1,6 +1,6 @@
 package Date::Hijri::Simple;
 
-$Date::Hijri::Simple::VERSION   = '0.13';
+$Date::Hijri::Simple::VERSION   = '0.14';
 $Date::Hijri::Simple::AUTHORITY = 'cpan:MANWAR';
 
 =head1 NAME
@@ -9,7 +9,7 @@ Date::Hijri::Simple - Represents Hijri date.
 
 =head1 VERSION
 
-Version 0.13
+Version 0.14
 
 =cut
 
@@ -206,40 +206,6 @@ sub is_leap_year {
     my $mod = $year % 30;
     return 1 if grep/$mod/, @{$self->hijri_leap_year_mod};
     return 0;
-}
-
-=head2 get_calendar($month, $year)
-
-Returns color coded Hijri calendar for the given C<$month> and C<$year>.
-
-=cut
-
-sub get_calendar {
-    my ($self, $month, $year) = @_;
-
-    if (defined $month && defined $year) {
-        $self->validate_month($month);
-        $self->validate_year($year);
-
-        if ($month !~ /^\d+$/) {
-            $month = $self->get_month_number($month);
-        }
-    }
-    else {
-        $month = $self->month;
-        $year  = $self->year;
-    }
-
-    my $date = Date::Hijri::Simple->new({ year => $year, month => $month, day => 1 });
-
-    return $self->create_calendar(
-        {
-            start_index => $date->day_of_week,
-            month_name  => $date->get_month_name,
-            days        => $date->days_in_month_year($month, $year),
-            day_names   => $date->days,
-            year        => $year
-        });
 }
 
 sub days_in_year {
