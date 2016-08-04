@@ -22,7 +22,7 @@ WriteMakefile(
         'Moo'              => '2.000000',
         'namespace::clean' => '0.24',
         'List::Util'       => '1.41',
-        'Date::Utils'      => '0.20',
+        'Date::Utils'      => '0.21',
         'Date::Exception'  => '0.03',
         'Time::localtime'  => '1.02',
     },
