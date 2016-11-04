@@ -1,5 +1,8 @@
 Revision history for Date::Hijri::Simple
 
+0.16  Fri Nov 04 05:35:00 2016
+      - Added key 'provides' to the Makefile.PL script.
+
 0.15  Thu Aug 04 12:10:00 2016
       - Updated the dependency on Date::Utils v0.21.
 
