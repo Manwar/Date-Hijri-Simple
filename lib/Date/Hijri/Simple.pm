@@ -1,6 +1,6 @@
 package Date::Hijri::Simple;
 
-$Date::Hijri::Simple::VERSION   = '0.16';
+$Date::Hijri::Simple::VERSION   = '0.17';
 $Date::Hijri::Simple::AUTHORITY = 'cpan:MANWAR';
 
 =head1 NAME
@@ -9,7 +9,7 @@ Date::Hijri::Simple - Represents Hijri date.
 
 =head1 VERSION
 
-Version 0.16
+Version 0.17
 
 =cut
 

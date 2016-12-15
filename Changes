@@ -1,5 +1,8 @@
 Revision history for Date::Hijri::Simple
 
+0.17  Thu Dec 15 11:00:00 2016
+      - Added test scripts (t/meta-json.t and t/meta-yml.t).
+
 0.16  Fri Nov 04 05:35:00 2016
       - Added key 'provides' to the Makefile.PL script.
 
