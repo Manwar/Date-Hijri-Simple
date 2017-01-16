@@ -1,5 +1,8 @@
 Revision history for Date::Hijri::Simple
 
+0.18  Mon Jan 16 12:55:00 2017
+      - Updated the dependency on Date::Utils v0.22.
+
 0.17  Thu Dec 15 11:00:00 2016
       - Added test scripts (t/meta-json.t and t/meta-yml.t).
 
